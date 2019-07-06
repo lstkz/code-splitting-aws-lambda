@@ -1,0 +1,6 @@
+{
+  "extends": ["../../packages/config/tslint/base.json"],
+  "rules": {
+    "array-type": false
+  }
+}
