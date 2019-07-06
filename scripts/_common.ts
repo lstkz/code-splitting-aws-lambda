@@ -6,7 +6,6 @@ import path from 'path';
 import fs from 'fs';
 import { AWS_REGION, BUCKET_NAME } from '../config';
 
-export const envName = 'dev';
 export const stackName = 'lambda-code-splitting';
 
 export const s3 = new S3({
@@ -91,7 +90,6 @@ export async function initStack(type: 'create' | 'update') {
     Capabilities: ['CAPABILITY_IAM'],
     Parameters: [
       { ParameterKey: 'NamePrefix', ParameterValue: stackName },
-      { ParameterKey: 'EnvName', ParameterValue: envName },
       { ParameterKey: 'S3BucketName', ParameterValue: BUCKET_NAME },
       { ParameterKey: 'APIFunctionVersion', ParameterValue: version },
     ],

@@ -26,15 +26,20 @@ export async function handler(event: APIGatewayProxyEvent) {
     const ret = await rpcHandler(exec[1], params, event.headers['x-token']);
     return {
       statusCode: 200,
-      body: JSON.stringify(ret),
+      body: JSON.stringify({
+        ok: true,
+        result: ret,
+      }),
     };
   } catch (e) {
     const serialized = util.inspect(e, { depth: null });
-    console.error(serialized);
+    console.error(event.requestContext.requestId, serialized);
     return {
-      statusCode: 500,
+      statusCode: 400,
       body: JSON.stringify({
+        ok: false,
         error: e.message,
+        requestId: event.requestContext.requestId,
       }),
     };
   }

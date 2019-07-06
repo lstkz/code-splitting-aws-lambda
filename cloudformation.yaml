@@ -16,12 +16,6 @@ Parameters:
     AllowedPattern: ^.*[^0-9]$
     ConstraintDescription: Must end with non numeric character.
 
-  EnvName:
-    Type: String
-    Description: Name of an environment. 'dev', 'staging', 'prod' and any name.
-    AllowedPattern: ^.*[^0-9]$
-    ConstraintDescription: Must end with non numeric character.
-
 Outputs:
   APIEndpoint:
     Value: !Sub "https://${RPC}.execute-api.${AWS::Region}.amazonaws.com/default/"
@@ -64,7 +58,7 @@ Resources:
       Environment:
         Variables:
           NODE_ENV: production
-      FunctionName: !Sub ${NamePrefix}-${EnvName}
+      FunctionName: !Sub ${NamePrefix}
       Handler: "app-lambda.handler"
       MemorySize: 1536
       Role: !GetAtt APIFunctionRole.Arn
@@ -78,7 +72,7 @@ Resources:
   RPC:
     Type: "AWS::ApiGateway::RestApi"
     Properties:
-      Name: !Sub ${NamePrefix}-${EnvName}
+      Name: !Sub ${NamePrefix}
   RPCResource:
     Type: "AWS::ApiGateway::Resource"
     Properties:

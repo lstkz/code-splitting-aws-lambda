@@ -47,11 +47,12 @@ const server = http.createServer(async (req, res) => {
   } catch (e) {
     const serialized = util.inspect(e, { depth: null });
     console.error(serialized);
-    res.statusCode = 500;
+    res.statusCode = 400;
     res.setHeader('Content-Type', 'application/json');
     res.write(
       JSON.stringify(
         {
+          ok: false,
           error: e.message,
           fullError: serialized.split('\n'),
         },
