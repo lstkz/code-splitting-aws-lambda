@@ -48,11 +48,9 @@ contracts
       Path.join(__dirname, '../src'),
       file
     ).replace(/.ts$/, '');
-
+    const signature = binding.rpcOptions!.signature;
     entries.push(
-      `'${
-        binding.rpcOptions!.signature
-      }': import('./${relativePath}').then(x => x['${key}']),`
+      `'${signature}': () => import(/* webpackChunkName: "${signature}"*/ './${relativePath}').then(x => x['${key}']),`
     );
   });
 
@@ -60,7 +58,13 @@ fs.writeFileSync(
   Path.join(__dirname, '../src/api-mapping.ts'),
   prettier.format(
     `
-export const apiMapping = {
+import { ContractBinding } from 'defensive';
+
+type Fn = ContractBinding<any> & ((...args: any[]) => Promise<any>);
+interface ApiMapping {
+  [x: string]: () => Promise<Fn>
+}
+export const apiMapping: ApiMapping = {
 ${entries.join('\n')}
 }
 `,

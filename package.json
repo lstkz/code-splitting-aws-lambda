@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tsc": "tsc --noEmit",
+    "dev": "NODE_ENV=development nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm dist/*; webpack --progress --colors"
   },
+  "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BetterCallSky/code-splitting-aws-lambda.git"
@@ -17,13 +21,19 @@
   },
   "homepage": "https://github.com/BetterCallSky/code-splitting-aws-lambda#readme",
   "devDependencies": {
+    "@types/adm-zip": "^0.4.32",
     "@types/node": "^12.0.12",
+    "adm-zip": "^0.4.13",
+    "nodemon": "^1.19.1",
     "prettier": "^1.18.2",
+    "ts-loader": "^5.4.4",
     "typescript": "^3.5.2",
-    "webpack": "^4.35.2"
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5"
   },
   "dependencies": {
     "@types/prettier": "^1.16.4",
+    "aws-sdk": "^2.488.0",
     "defensive": "^1.1.0",
     "remeda": "^0.0.11",
     "veni": "^0.2.9"

@@ -1,12 +1,14 @@
 import { ContractBinding } from 'defensive';
 
-ContractBinding.prototype.rpc = function(options) {
-  this.fn.rpcOptions = {
-    ...options,
-    signature: options.signature || this.signature,
+export function addRpcBinding() {
+  ContractBinding.prototype.rpc = function(options) {
+    this.fn.rpcOptions = {
+      ...options,
+      signature: options.signature || this.signature,
+    };
+    return this.fn as any;
   };
-  return this.fn as any;
-};
+}
 
 type RpcOptions = {
   public?: true;
