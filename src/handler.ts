@@ -1,7 +1,4 @@
-import { addRpcBinding } from './bindings/rpc';
 import { apiMapping } from './api-mapping';
-
-addRpcBinding();
 
 export async function handler(
   rpcMethod: string,

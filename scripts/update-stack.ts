@@ -1,3 +1,3 @@
 import { initStack } from './_common';
 
-initStack('create');
+initStack('update');

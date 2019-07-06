@@ -3,7 +3,6 @@ import * as R from 'remeda';
 import fs from 'fs';
 import Path from 'path';
 import { ContractBinding } from 'defensive';
-import '../src/bindings/rpc';
 
 const baseDir = Path.join(__dirname, '../src/contracts');
 
