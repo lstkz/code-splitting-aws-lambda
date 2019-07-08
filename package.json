@@ -6,9 +6,7 @@
     "tsc": "tsc --noEmit",
     "dev": "NODE_ENV=development nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm dist/*; webpack --progress --colors",
-    "init": "yarn run build && ts-node -T scripts/create-stack",
-    "update": "yarn run build && ts-node -T scripts/update-stack"
+    "build": "rm dist/*; webpack --progress --colors"
   },
   "sideEffects": false,
   "repository": {
@@ -23,6 +21,10 @@
   },
   "homepage": "https://github.com/BetterCallSky/code-splitting-aws-lambda#readme",
   "devDependencies": {
+    "@aws-cdk/aws-apigateway": "^0.37.0",
+    "@aws-cdk/aws-dynamodb": "^0.37.0",
+    "@aws-cdk/aws-lambda": "^0.37.0",
+    "@aws-cdk/core": "^0.37.0",
     "@types/adm-zip": "^0.4.32",
     "@types/node": "^12.0.12",
     "adm-zip": "^0.4.13",

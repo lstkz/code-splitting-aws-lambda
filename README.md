@@ -1,5 +1,11 @@
 # code-splitting-aws-lambda
 
+## Requirments
+- node v10
+- cdk:
+  - `npm i -g aws-cdk`
+  - `aws bootstrap`
+
 The example serverless application with code splitting. The application is implemented as a simple RPC API where each contract method (aka service) is loaded dynamically.  
 
   
@@ -17,10 +23,8 @@ Creating a complete library or a framework would be too much time-consuming. It'
 ## What's included?
 1. creating and updating AWS Stack:
 ```bash
-## build app and init stack
-npm run init
-## build app and update stack
-npm run update
+npm run build
+cdk deploy
 ```
 
 2. development mode with nodemon
@@ -54,8 +58,7 @@ body:
 ```
 
 ## AWS Stack
-`cloudformation.yaml` contains definition for the whole AWS Stack.  
-You must create a S3 bucket manually, and update `BUCKET_NAME` in `config.ts`.  
+`cdk/MainStack` contains definition for the whole AWS Stack.  
 The stack contains:
 - one lambda function
 - one api gateway
